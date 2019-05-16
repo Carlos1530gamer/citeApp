@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">citeApp</string>
     <string name="title_activity_chat">ChatActivity</string>
+    <string name="register">register</string>
+    <string name="login">Login</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">password</string>
 </resources>
