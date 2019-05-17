@@ -14,9 +14,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 
 public class Login_Activity_Register_Fragment extends Fragment {
 
@@ -88,8 +93,16 @@ public class Login_Activity_Register_Fragment extends Fragment {
     }
 
     private void doRegister(){
+        //get current user
+        final FirebaseUser user = auth.getCurrentUser();
+        //create new porfile user data
+        final Person person = new Person("",user.getEmail(),"",-1);
+        //create the new user in the database
+        FirestoreUtils.instance.createUser(person,user.getUid());
+        //pass to next view
         Intent intent = new Intent(getContext(),MainActivity.class);
         startActivity(intent);
         getActivity().finish();
+
     }
 }

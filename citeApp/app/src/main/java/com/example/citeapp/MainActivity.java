@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
-    Person[] persons = {new Person("Carlos","/"),new Person("Juan","d/asd"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/")};
+    //Person[] persons = {new Person("Carlos","/"),new Person("Juan","d/asd"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/"),new Person("Carlos","/")};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.main_activity_list_view);
         actionButton = (FloatingActionButton) findViewById(R.id.main_activity_float_button_search);
 
-        listView.setAdapter(new Main_List_View_Adapter(this,persons));
+        /*listView.setAdapter(new Main_List_View_Adapter(this,persons));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+*/
         actionButton.setOnClickListener(new View.OnClickListener() {//toda esta clase se revisa maniana
             @Override
             public void onClick(View v) {
