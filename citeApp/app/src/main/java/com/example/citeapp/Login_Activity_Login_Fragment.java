@@ -1,5 +1,6 @@
 package com.example.citeapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,11 +13,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class Login_Activity_Login_Fragment extends Fragment {
 
     EditText emailEditText;
     EditText passwordEditText;
     Button loginButton;
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
 
     //cuando se crea la vista salta hasta aqui
     @Nullable
@@ -41,7 +50,20 @@ public class Login_Activity_Login_Fragment extends Fragment {
 
     private void loginButtonHasPressed(View view){
         if(!isEmpty(emailEditText) && !isEmpty(passwordEditText)){
-            doLogin();
+            final String email = emailEditText.getText().toString();
+            final String password = passwordEditText.getText().toString();
+            final Task<AuthResult> task = auth.signInWithEmailAndPassword(email,password);
+
+            task.addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        doLogin();
+                    }else{
+                        Toast.makeText(getContext(),task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
         }else{
             Toast.makeText(getContext(),"Rellena todos los campos",Toast.LENGTH_LONG).show();
         }
@@ -56,6 +78,8 @@ public class Login_Activity_Login_Fragment extends Fragment {
     }
 
     private void doLogin(){
-        Toast.makeText(getContext(),"paso",Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(),MainActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 }
