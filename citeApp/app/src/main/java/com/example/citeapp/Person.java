@@ -2,6 +2,7 @@ package com.example.citeapp;
 
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Person {
     //constantes
@@ -14,10 +15,13 @@ public class Person {
     String name;
     String email;
     String imageUrl;
-    int age;
+    String age;
+
+    //es util para cuando tengas el chat la sigiente variable
+    String chatId = null;
 
 
-    public Person(String name,String email, String imageUrl, int age){
+    public Person(String name, String email, String imageUrl, String age){
         this.name = name;
         this.email = email;
         this.imageUrl = imageUrl;
@@ -28,7 +32,7 @@ public class Person {
         this.name = name;
         this.email = "";
         this.imageUrl = "";
-        this.age = -1;
+        this.age = "-1";
     }
 
     public HashMap<String,Object> toHashMap(){
@@ -40,11 +44,11 @@ public class Person {
         return returnValue;
     }
 
-    public static Person fromHashMap(HashMap<String,Object> hashMap){
+    public static Person fromhMap(Map<String,Object> hashMap){
         String name = (String) hashMap.get(NAME);
         String email = (String) hashMap.get(EMAIL);
         String imagePath = (String) hashMap.get(IMAGE_PATH);
-        int age = (int) hashMap.get(AGE);
+        String age = (String) hashMap.get(AGE);
 
         return new Person(name,email,imagePath,age);
     }

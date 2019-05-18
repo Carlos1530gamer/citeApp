@@ -96,7 +96,7 @@ public class Login_Activity_Register_Fragment extends Fragment {
         //get current user
         final FirebaseUser user = auth.getCurrentUser();
         //create new porfile user data
-        final Person person = new Person("",user.getEmail(),"",-1);
+        final Person person = new Person("",user.getEmail(),"","-1");
         //create the new user in the database
         FirestoreUtils.instance.createUser(person,user.getUid());
         //pass to next view

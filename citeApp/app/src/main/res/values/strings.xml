@@ -7,4 +7,9 @@
     <string name="password">password</string>
     <string name="label">label</string>
     <string name="todo">TODO</string>
+    <string name="item">Perfil</string>
+    <string name="enviar">Enviar</string>
+    <string name="chat_activity_list_item_emisor">TextView</string>
+    <string name="text">text</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>

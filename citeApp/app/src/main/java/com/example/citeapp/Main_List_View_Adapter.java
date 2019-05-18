@@ -8,15 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Main_List_View_Adapter extends BaseAdapter {
+import java.util.LinkedList;
+
+public class Main_List_View_Adapter<T> extends BaseAdapter {
 
     //propieties
 
     private static LayoutInflater inflater;
     private Context context;
-    private Person[] persons;
+    private LinkedList<Person> persons;
 
-    public Main_List_View_Adapter(Context context, Person[] persons){
+    public Main_List_View_Adapter(Context context, LinkedList<Person> persons){
         this.context = context;
         this.persons = persons;
 
@@ -24,12 +26,12 @@ public class Main_List_View_Adapter extends BaseAdapter {
     }
     @Override
     public int getCount() {
-        return persons.length;
+        return persons.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return null;
+        return persons.get(position);
     }
 
     @Override
@@ -41,11 +43,11 @@ public class Main_List_View_Adapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         final View view = inflater.inflate(R.layout.main_list_item,null);
         //obteniendo los widgets
-        TextView textView = (TextView) view.findViewById(R.id.main_item_name_label);
-        ImageView imageView = (ImageView) view.findViewById(R.id.main_item_user_image);
+        TextView textView = view.findViewById(R.id.main_item_name_label);
+        ImageView imageView = view.findViewById(R.id.main_item_user_image);
         //setup the view
         view.setBackgroundResource(R.color.clear);
-        textView.setText(persons[position].name);
+        textView.setText(persons.get(position).name);
         return view;
     }
 }
