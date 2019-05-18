@@ -6,4 +6,10 @@
         android:title="@string/item"
         android:visible="true"
         />
+    <item
+        android:id="@+id/log_out"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Log out"
+        android:visible="true"
+        />
 </menu>

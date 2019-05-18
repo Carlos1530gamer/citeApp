@@ -11,7 +11,13 @@
         android:theme="@style/Theme.AppCompat">
         <activity
             android:name=".ProfileActivity"
-            android:label="@string/title_activity_profile"></activity>
+            android:label="@string/title_activity_profile"
+            android:parentActivityName=".MainActivity">
+
+            <!-- algunas versiones de la api de android viejas utilizan los metadatos -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />></activity>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

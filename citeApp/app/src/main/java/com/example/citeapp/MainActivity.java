@@ -114,9 +114,7 @@ public class MainActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {//toda esta clase se revisa maniana
             @Override
             public void onClick(View v) {
-                auth.signOut();
-                startActivity(new Intent(getApplicationContext(),LoginActivity.class));
-                finish();
+
             }
         });
 
@@ -134,6 +132,10 @@ public class MainActivity extends AppCompatActivity {
         if(item.getItemId() == R.id.action_favorite){
             Intent intent = new Intent(this,ProfileActivity.class);
             startActivity(intent);
+        }else if(item.getItemId() == R.id.log_out){
+            auth.signOut();
+            startActivity(new Intent(getApplicationContext(),LoginActivity.class));
+            finish();
         }
         return super.onOptionsItemSelected(item);
     }
