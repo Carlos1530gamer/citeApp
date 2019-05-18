@@ -1,17 +1,29 @@
 package com.example.citeapp;
 
 import android.content.Context;
+import android.provider.DocumentsContract;
 import android.support.annotation.NonNull;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
 
 public class FirestoreUtils {
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
+    private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private Context context;
 
     //Esta clase solo funciona para hacer mas facil y mas limpio el codifo
@@ -21,6 +33,7 @@ public class FirestoreUtils {
     private FirestoreUtils(){
 
     }
+
 
     public void createUser(Person person, String nameFile){
         CollectionReference reference = firestore.collection("users");
