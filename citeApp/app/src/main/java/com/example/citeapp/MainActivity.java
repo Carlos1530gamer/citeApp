@@ -1,31 +1,24 @@
 package com.example.citeapp;
 
-import android.app.ActionBar;
+import android.app.Dialog;
 import android.content.Intent;
-import android.os.Handler;
-import android.os.Looper;
-import android.provider.DocumentsContract;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.google.android.gms.common.api.internal.ListenerHolder;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,22 +30,25 @@ public class MainActivity extends AppCompatActivity {
 
     ListView listView;
     FloatingActionButton actionButton;
+    Dialog popUpSerachFriends;
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
-    //LinkedList<Person> persons;
+    LinkedList<Person> persons = new LinkedList<>();
+    Main_List_View_Adapter mainListViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-        Toast.makeText(this,auth.getCurrentUser().getEmail(),Toast.LENGTH_SHORT).show();
-
         listView = (ListView) findViewById(R.id.main_activity_list_view);
         actionButton = (FloatingActionButton) findViewById(R.id.main_activity_float_button_search);
+
+        mainListViewAdapter = new Main_List_View_Adapter(this,persons);
+        listView.setAdapter(mainListViewAdapter);
+
+        popUpSerachFriends = new Dialog(this);
 
         //cargando los chats
         final FirebaseUser user = auth.getCurrentUser();
@@ -76,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                     usersRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            final LinkedList<Person> persons = new LinkedList<>();
                             if(task.isSuccessful()){
                                 for(QueryDocumentSnapshot document : task.getResult()){
                                     for(String item : idList){
@@ -85,12 +80,11 @@ public class MainActivity extends AppCompatActivity {
                                             Person person = Person.fromhMap(mapUser);
                                             person.chatId = idChatList.get(idList.indexOf(item));
                                             persons.push(person);
+                                            mainListViewAdapter.notifyDataSetChanged();
                                         }
                                     }
                                 }
                             }
-                            Main_List_View_Adapter adapter = new Main_List_View_Adapter(getApplicationContext(),persons);
-                            listView.setAdapter(adapter);
                         }
                     });
                 }
@@ -114,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         actionButton.setOnClickListener(new View.OnClickListener() {//toda esta clase se revisa maniana
             @Override
             public void onClick(View v) {
-
+                showPopUpResultsFriends();
             }
         });
 
@@ -140,8 +134,25 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void setupUI(){
         View rootView = getWindow().getDecorView(); //obtenemos la vista principal
         this.setTitle("Chats");//cambia el nombre del titulo
+    }
+
+    private void showPopUpResultsFriends(){
+        popUpSerachFriends.setContentView(R.layout.main_activity_pop_up_search_friends);
+
+        final Button popUpCloseButton = (Button) popUpSerachFriends.findViewById(R.id.main_activity_pop_up_close_pop_up);
+        ListView popUpListView = (ListView) popUpSerachFriends.findViewById(R.id.main_activity_list_view);
+
+        popUpCloseButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                popUpSerachFriends.dismiss();
+            }
+        });
+
+        popUpSerachFriends.show();
     }
 }

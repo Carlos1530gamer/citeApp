@@ -58,6 +58,27 @@ public class FirestoreUtils {
 
     }
 
+    public void addNewGusto(String gusto, LinkedList<String> gustos) {
+        if (!gustos.contains(gusto) && !gusto.equals("")) {
+            final String modifyGusto = gusto.toLowerCase();
+            CollectionReference userGustosReference = firestore.collection("users").document(user.getUid()).collection("gustos");
+            CollectionReference gustosCollectionReference = firestore.collection("gustos").document(gusto).collection("users");
+
+            Map<String,Object> newGustoMap = new HashMap<>();
+            newGustoMap.put("field",gusto);
+
+            Map<String,Object> newUserInGustosMap = new HashMap<>();
+            newUserInGustosMap.put("user",user.getUid());
+
+            userGustosReference.document().set(newGustoMap);
+            gustosCollectionReference.document().set(newUserInGustosMap);
+        }else{
+            if (context != null){
+                Toast.makeText(context,"no puedes agregar un gusto que ya registraste",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     public void setContext(Context context) {
         this.context = context;
     }
