@@ -252,14 +252,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         final String newDocId = documentReference.getId();
-
-                        //nuevos docs para subir y actualizar los chats de cada uno
-
-
-                        //agregamps los nuevos chats a cada uno
-
-                        //aqui estaria el codigo para que se crean los nuevos chats si solo tuviera uno :'V
-                        popUpSerachFriends.dismiss();
+                        //restart activity
+                        Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                        finish();
+                        startActivity(intent);
+                        //
                     }
                 });
             }
