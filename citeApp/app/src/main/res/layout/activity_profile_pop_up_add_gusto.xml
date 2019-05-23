@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="250dp"
+    android:layout_gravity="center"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <Button
+        android:id="@+id/main_activity_pop_up_close_pop_up"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_gravity="end"
+        android:background="#5A595B"
+        android:text="X" />
+
+    <EditText
+        android:id="@+id/activity_profile_pop_up_gusto_edit_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="gusto"
+        android:layout_marginTop="35dp"/>
+
+    <Button
+        android:id="@+id/activity_profile_pop_up_gusto_add_new_gusto_button"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="70dp"
+        android:text="agregar"
+        android:textSize="10sp" />
+</LinearLayout>

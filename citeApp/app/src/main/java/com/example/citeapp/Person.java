@@ -17,8 +17,9 @@ public class Person {
     String imageUrl;
     String age;
 
-    //es util para cuando tengas el chat la sigiente variable
+    //variblesUtiles en ciertos casos
     String chatId = null;
+    String userId = null;
 
 
     public Person(String name, String email, String imageUrl, String age){

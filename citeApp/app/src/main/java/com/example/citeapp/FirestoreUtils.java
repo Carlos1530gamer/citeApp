@@ -12,6 +12,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -55,6 +56,31 @@ public class FirestoreUtils {
                 Toast.makeText(context,exption.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+    }
+
+    public void addNewGusto(String gusto, LinkedList<String> gustos) {
+        if (!gustos.contains(gusto) && !gusto.equals("")) {
+            final String modifyGusto = gusto.toLowerCase();
+            CollectionReference userGustosReference = firestore.collection("users").document(user.getUid()).collection("gustos");
+            CollectionReference gustosCollectionReference = firestore.collection("gustos").document(gusto).collection("users");
+
+            Map<String,Object> newGustoMap = new HashMap<>();
+            newGustoMap.put("field",gusto);
+
+            Map<String,Object> newUserInGustosMap = new HashMap<>();
+            newUserInGustosMap.put("user",user.getUid());
+
+            userGustosReference.document().set(newGustoMap);
+            gustosCollectionReference.document().set(newUserInGustosMap);
+        }else{
+            if (context != null){
+                Toast.makeText(context,"no puedes agregar un gusto que ya registraste",Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    public void createNewChatForUsers(final String autor, final String remitente){
 
     }
 
