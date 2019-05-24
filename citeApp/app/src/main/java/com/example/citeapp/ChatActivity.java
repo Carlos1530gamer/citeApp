@@ -1,6 +1,7 @@
 package com.example.citeapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,7 +29,9 @@ import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
 
@@ -47,7 +50,7 @@ public class ChatActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
@@ -59,12 +62,13 @@ public class ChatActivity extends AppCompatActivity {
         sendButton = (Button) findViewById(R.id.chat_activity_send_button);
         sendTextEditText = (EditText) findViewById(R.id.chat_activity_edit_text);
 
-        final Chat_Activity_List_View_Adapter adapter = new Chat_Activity_List_View_Adapter(messages,getApplicationContext());
-        listView.setAdapter(adapter);
-
         Intent intent = getIntent();
         String chatId = intent.getStringExtra("chatId");
         String userName = intent.getStringExtra("userName");
+        String imageUrl = intent.getStringExtra("imageUrl");
+
+        final Chat_Activity_List_View_Adapter adapter = new Chat_Activity_List_View_Adapter(messages,getApplicationContext(),imageUrl);
+        listView.setAdapter(adapter);
 
         setTitle("Message con " + userName);
 
