@@ -16,6 +16,12 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.LinkedList;
 
+/**
+ * Esta clase crea un adapter que hereda de base adapter para crear una 
+ * lista personalizada de los chats
+ * @author Carlos Daniel Hernandez Chauteco
+ */
+
 public class Chat_Activity_List_View_Adapter extends BaseAdapter {
 
     String imageUrl;
@@ -24,6 +30,11 @@ public class Chat_Activity_List_View_Adapter extends BaseAdapter {
     private Context context;
     private LinkedList<Message> messages;
 
+    /**
+     * @param messages Pasa una lista de mensajes que son los que se desplegaran en la vista de chats 
+     * @param context El contexto lo utilizamos para tener una referencia al contexto de la app que nos deja obtener los componentes graficos
+     * @param imageUrl El image url nos ayuda a poner la imagen de la otra persona
+     */
     public Chat_Activity_List_View_Adapter(LinkedList<Message> messages, Context context, String imageUrl){
         this.messages = messages;
         this.context = context;
@@ -31,11 +42,19 @@ public class Chat_Activity_List_View_Adapter extends BaseAdapter {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    /**
+     * Este metodo cuenta el numero de elementos que tendra el list view y en este caso serian el numero de mesajes que tiene la lista
+     */
     @Override
     public int getCount() {
         return messages.size();
     }
 
+    /**
+     * Este metodo sirve cuando al adapter se le pregunta un elemento del list view este pueda regresar el modelo original del cual se extrae
+     * @param position La posision del elemeto en la lista
+     * @return El modelo de datos de la posicion seleccionada 
+     */
     @Override
     public Object getItem(int position) {
         return messages.get(position);
@@ -45,6 +64,12 @@ public class Chat_Activity_List_View_Adapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+
+    /**
+     * Este metodo se llama por cada una de las vistas que se crearon antes
+     * @param position La posicion de la vista en la tabla
+     * @return la vista final que se presentara
+     */
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {

@@ -22,6 +22,12 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
+/**
+ * Esta clase solo hace mas facil algunas llamadas a la base de datos
+ * @author Carlos Daniel Hernandez Chauteco
+ */
+
+
 public class FirestoreUtils {
     private FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     private FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -29,13 +35,20 @@ public class FirestoreUtils {
 
     //Esta clase solo funciona para hacer mas facil y mas limpio el codifo
 
+    /**
+     * Un singleton para que no tengamos que intanciar muchas clases y solo tengamos una en memoria
+     */
     public static FirestoreUtils instance = new FirestoreUtils();
 
     private FirestoreUtils(){
 
     }
 
-
+    /**
+     * Ese metodo crea un nuevo usurio en la base de datos
+     * @param person una modelo de datos del tipo person
+     * @param nameFile es el nombre del documento en firebase
+     */
     public void createUser(Person person, String nameFile){
         CollectionReference reference = firestore.collection("users");
         final Task<Void> task = reference.document(nameFile).set(person.toHashMap());
@@ -59,6 +72,11 @@ public class FirestoreUtils {
 
     }
 
+    /**
+     * Este metodo lo que hace es generar un nuevo gusto en la base de datos del usuario
+     * @param gusto Nombre del gusto
+     * @param gustos una instacia en memoria de los gustos que tiene el usuario para que no repita uno
+     */
     public void addNewGusto(String gusto, LinkedList<String> gustos) {
         if (!gustos.contains(gusto) && !gusto.equals("")) {
             final String modifyGusto = gusto.toLowerCase();
@@ -80,10 +98,9 @@ public class FirestoreUtils {
         }
     }
 
-    public void createNewChatForUsers(final String autor, final String remitente){
-
-    }
-
+    /**
+     * Este metodo sirve para obter el contexto de la app y solo si er necesario mostrar un Toast
+     */
     public void setContext(Context context) {
         this.context = context;
     }

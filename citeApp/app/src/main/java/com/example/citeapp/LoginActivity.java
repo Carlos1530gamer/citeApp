@@ -10,11 +10,17 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+/**
+ * Esta clase es el controlador del activity de Login
+ * @author Carlos Daniel Hernandez Chauteco
+ */
 public class LoginActivity extends AppCompatActivity {
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+    /**
+     * Este metodo se mada a llamar cada que se crea una intancia del activity
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +41,9 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
     }
 
+    /**
+     * Verifica si el usuario antes se habia logeado
+     */
     private void theUserIsLoged(){
         Intent intent = new Intent(this,MainActivity.class);
         startActivity(intent);

@@ -22,9 +22,14 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Esta clase controla todo la logica e interfaz del fragment de register
+ * @author Carlos Daniel Hernandez Chauteco
+ */
+
 
 public class Login_Activity_Register_Fragment extends Fragment {
-
+    //es la imagen por defecto de que se le asigna en la base de datos
     public static final String IMAGE_URL = "https://firebasestorage.googleapis.com/v0/b/citeapp-7010a.appspot.com/o/anonymous-user.png?alt=media&token=3eabfda9-6c66-4b70-b8ed-dcc44e28ef9f";
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -33,6 +38,11 @@ public class Login_Activity_Register_Fragment extends Fragment {
     EditText confirmPasswordEditText;
     Button registerButton;
 
+    /**
+     * Este metodo se llama cuando se crea un fragment y se define to lo que los botones hacen y 
+     * tambien se guardan la referencia de los widgets
+     * @return La vista con la cual se trabaja
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -52,6 +62,11 @@ public class Login_Activity_Register_Fragment extends Fragment {
 
         return view;
     }
+
+    /**
+     * Este metodo se llama cuando el boton de registro fue presionado
+     * @param view la vista la cual fue presionada
+     */
     private void registerButtonHasPressed(View view){
         if(!isEmpty(emailEditText) && !isEmpty(passwordEditText) && equalsEditText(passwordEditText,confirmPasswordEditText)){
             final String email = emailEditText.getText().toString();
@@ -74,6 +89,11 @@ public class Login_Activity_Register_Fragment extends Fragment {
         }
     }
 
+    /**
+     * Esta funcion ayuda a saber si un edit text esta vacio 
+     * @param editText el edit text el cual se revisa
+     * @return si es cierto
+     */
     private boolean isEmpty(EditText editText){
         if(TextUtils.isEmpty(editText.getText().toString())){
             editText.setError("Campo vacio");
@@ -83,6 +103,12 @@ public class Login_Activity_Register_Fragment extends Fragment {
 
     }
 
+    /**
+     * Metodo para saber si dos edit Text son similares
+     * @param firstEditText El primer edi text a comparar
+     * @param secondEditText El segundo edit text a comparar
+     * @return si es cierto
+     */
     private boolean equalsEditText(EditText firstEditText, EditText secondEditText){
         final String firstText = firstEditText.getText().toString();
         final String secondText = secondEditText.getText().toString();
@@ -92,7 +118,9 @@ public class Login_Activity_Register_Fragment extends Fragment {
         secondEditText.setError("Las contasenias no coinciden");
         return false;
     }
-
+    /**
+     * Este metodo se manda a llamar cuando se ha creado exitosamente el ususario
+     */
     private void doRegister(){
         //get current user
         final FirebaseUser user = auth.getCurrentUser();

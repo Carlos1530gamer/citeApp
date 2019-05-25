@@ -63,6 +63,10 @@ public class ProfileActivity extends Activity {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseStorage storage = FirebaseStorage.getInstance();
+
+    /**
+     * Se llama la crear en cada intacia de la clase y este agrega la logica de los widgets y de la base de daros
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,7 +178,11 @@ public class ProfileActivity extends Activity {
         });
 
     }
-
+    
+    /**
+     * Este metodo se llama cuando el activity se pausa y de paso elimino el lintener de gustos
+     * para que no siga escuchando los cambios y guardamos los gustos en memoria secundaria
+     */
     @Override
     protected void onStop() {
         if(userDocListener != null){
@@ -200,11 +208,18 @@ public class ProfileActivity extends Activity {
         super.onStop();
     }
 
+    /**
+     * Este metodo solo cambia el estado de los elementos de que se cambiaran el la base de datos
+     * @param condicion
+     */
     private void todoLosComponentesSonEditables(boolean condicion){
         usernameEditText.setEnabled(condicion);
         ageEditText.setEnabled(condicion);
     }
 
+    /**
+     * Este metodo hace aparecer el pop up para agregar una un nuevo gusto
+     */
     private void showPopUp(){
         popUpAgregarGusto.setContentView(R.layout.activity_profile_pop_up_add_gusto);
 
@@ -232,6 +247,10 @@ public class ProfileActivity extends Activity {
         popUpAgregarGusto.show();
     }
 
+    /**
+     * Se llama cada que que se seleciona una imagen de la galeria del usuario
+     * @param data los datos de la imagen seleccionada
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -248,6 +267,10 @@ public class ProfileActivity extends Activity {
         }
     }
 
+    /**
+     * Sube la imagen del usuario en la base de datos
+     * @param image El bitmap de la imagen a subir
+     */
     private void uploadImage(Bitmap image){
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         image.compress(Bitmap.CompressFormat.JPEG,100,baos);

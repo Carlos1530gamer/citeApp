@@ -37,6 +37,12 @@ import java.util.LinkedList;
 
 import javax.annotation.Nullable;
 
+/**
+ * Esta clase pertenece al activity principal de la vista del chat 
+ * @author Carlos Daniel Hernandez Chauteco
+ */
+
+
 public class ChatActivity extends AppCompatActivity {
 
     ListView listView;
@@ -48,6 +54,10 @@ public class ChatActivity extends AppCompatActivity {
 
 
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+    /**
+     * Este metodo se manda a llamar cada que una instancia de esta vista es creada
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -117,6 +127,11 @@ public class ChatActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Este metodo se llama cada que la vista se destuye y en este caso destruimos el lister que solo
+     * es un socket que nos ayuda a que cada que llegue un nuevo mensaje este lo agrege a la tabla
+     */
+
     @Override
     protected void onStop() {
         if(listener != null){
@@ -125,6 +140,9 @@ public class ChatActivity extends AppCompatActivity {
         super.onStop();
     }
 
+    /**
+     * Este metodo sirve para algunas cosas de UI
+     */
     private void setupUI(){
         View rootView = getWindow().getDecorView(); //obtenemos la vista principal
     }

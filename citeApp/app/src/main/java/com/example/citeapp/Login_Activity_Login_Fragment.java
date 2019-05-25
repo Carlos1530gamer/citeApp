@@ -19,6 +19,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/**
+ * Esta clase define todo el fragment desdesu logica hasta su vista grafica del fragmento de registro
+ * @author Carlos Daniel Hernandez Chauteco
+ */
+
 public class Login_Activity_Login_Fragment extends Fragment {
 
     EditText emailEditText;
@@ -27,7 +32,11 @@ public class Login_Activity_Login_Fragment extends Fragment {
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
 
-    //cuando se crea la vista salta hasta aqui
+    /**
+     * Este metodo se llama cuando se crea un fragment y se define to lo que los botones hacen y 
+     * tambien se guardan la referencia de los widgets
+     * @return La vista con la cual se trabaja
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -48,6 +57,9 @@ public class Login_Activity_Login_Fragment extends Fragment {
         return view;
     }
 
+    /**
+     * Separo esta funcion para definir el lo que el boton debe hacer cuando se loguea un se presione registrar
+     */
     private void loginButtonHasPressed(View view){
         if(!isEmpty(emailEditText) && !isEmpty(passwordEditText)){
             final String email = emailEditText.getText().toString();
@@ -69,6 +81,11 @@ public class Login_Activity_Login_Fragment extends Fragment {
         }
     }
 
+    /**
+     * Metodo para saber si un edit text esta vacio
+     * @param editText
+     * @return
+     */
     private boolean isEmpty(EditText editText){
         if(TextUtils.isEmpty(editText.getText().toString())){
             editText.setError("Campo vacio");
@@ -77,6 +94,9 @@ public class Login_Activity_Login_Fragment extends Fragment {
         return false;
     }
 
+    /**
+     * esta funcion se llama cuando el backend autoriza al usuario
+     */
     private void doLogin(){
         Intent intent = new Intent(getActivity(),MainActivity.class);
         startActivity(intent);

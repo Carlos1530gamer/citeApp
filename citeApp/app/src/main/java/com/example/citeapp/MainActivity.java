@@ -38,6 +38,10 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * Clase que controla Main Activity
+ * @author Carlos Daniel Hernandez Chauteco
+ */
 public class MainActivity extends AppCompatActivity {
 
     ListView listView;
@@ -52,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
     LinkedList<String> excludeUsers = new LinkedList<>();
     Main_List_View_Adapter mainListViewAdapter;
 
+    /**
+     * Se manda a llamar cada que se crea una nueva instancia del main activity 
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -130,12 +137,20 @@ public class MainActivity extends AppCompatActivity {
         setupUI();
     }
 
+    /**
+     * Este metodo obtine los botones de la parte superior de la pantalla
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
         return true;
     }
 
+    /**
+     * Esta funcion se manda a llamar cada que se presiona una opcion de la lista superios
+     * @param item el item seleccionado
+     * @return si este fue seleccionado
+     */
     @Override//hace que puedas usar los items del tool bar
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.action_favorite){
@@ -149,12 +164,17 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    /**
+     * Esta funcion modifica algunas cositas del la UI como el titulo
+     */
     private void setupUI(){
         View rootView = getWindow().getDecorView(); //obtenemos la vista principal
         this.setTitle("Chats");//cambia el nombre del titulo
     }
 
+    /**
+     * Este metodo controla la logica y vista del pop up que aparece cuando buscas un amigo
+     */
     private void showPopUpResultsFriends(){
         popUpSerachFriends.setContentView(R.layout.main_activity_pop_up_search_friends);
         excludeUsers.add(user.getUid());//Obviamente esto debe pasar jejeje
