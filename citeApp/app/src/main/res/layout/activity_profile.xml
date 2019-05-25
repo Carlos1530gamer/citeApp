@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProfileActivity">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginEnd="1dp"
+        android:text="Nombre"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_profile_nombre_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/activity_profile_nombre_edit_text"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/activity_profile_image_user"
+        android:layout_width="wrap_content"
+        android:layout_height="128dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_launcher"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:text="Edad"
+        app:layout_constraintBaseline_toBaselineOf="@+id/activity_profile_edad_user"
+        app:layout_constraintEnd_toStartOf="@+id/activity_profile_edad_user" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/activity_profile_float_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@android:drawable/ic_menu_edit"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/activity_profile_list_view" />
+
+    <EditText
+        android:id="@+id/activity_profile_nombre_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Nmbre Usuario"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/activity_profile_image_user" />
+
+    <EditText
+        android:id="@+id/activity_profile_edad_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Edad"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/activity_profile_nombre_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/activity_profile_nombre_edit_text" />
+
+    <ListView
+        android:id="@+id/activity_profile_list_view"
+        android:layout_width="0dp"
+        android:layout_height="391dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="sans-serif-light"
+        android:text="Gustos"
+        android:textAlignment="center"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toStartOf="@+id/activity_profile_add_gusto"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/activity_profile_edad_user" />
+
+    <Button
+        android:id="@+id/activity_profile_add_gusto"
+        android:layout_width="39dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="16dp"
+        android:background="#009688"
+        android:text="+"
+        android:textColorHighlight="#00CF3838"
+        android:textSize="8sp"
+        android:typeface="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView4" />
+</android.support.constraint.ConstraintLayout>

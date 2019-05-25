@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_favorite"
+        android:icon="@drawable/common_full_open_on_phone"
+        android:title="@string/item"
+        android:visible="true"
+        />
+    <item
+        android:id="@+id/log_out"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="Log out"
+        android:visible="true"
+        />
+</menu>

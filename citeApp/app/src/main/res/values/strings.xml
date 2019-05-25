@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">citeApp</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="register">register</string>
+    <string name="login">Login</string>
+    <string name="usuario">Usuario</string>
+    <string name="password">password</string>
+    <string name="label">label</string>
+    <string name="todo">TODO</string>
+    <string name="item">Perfil</string>
+    <string name="enviar">Enviar</string>
+    <string name="chat_activity_list_item_emisor">TextView</string>
+    <string name="text">text</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>
