@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.LinkedList;
 
 public class Main_List_View_Adapter<T> extends BaseAdapter {
@@ -48,6 +50,7 @@ public class Main_List_View_Adapter<T> extends BaseAdapter {
         //setup the view
         view.setBackgroundResource(R.color.clear);
         textView.setText(persons.get(position).name);
+        Picasso.get().load(persons.get(position).imageUrl).into(imageView);
         return view;
     }
 }

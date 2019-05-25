@@ -1,6 +1,7 @@
 package com.example.citeapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,18 +11,23 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 public class Chat_Activity_List_View_Adapter extends BaseAdapter {
+
+    String imageUrl;
 
     private static LayoutInflater inflater;
     private Context context;
     private LinkedList<Message> messages;
 
-    public Chat_Activity_List_View_Adapter(LinkedList<Message> messages, Context context){
+    public Chat_Activity_List_View_Adapter(LinkedList<Message> messages, Context context, String imageUrl){
         this.messages = messages;
         this.context = context;
+        this.imageUrl = imageUrl;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -52,6 +58,8 @@ public class Chat_Activity_List_View_Adapter extends BaseAdapter {
 
             TextView messageLabel = (TextView) view.findViewById(R.id.chat_activity_list_item_label_emisor);
             ImageView emisorImage = (ImageView) view.findViewById(R.id.chat_activity_list_item_image_emisor);
+
+            Picasso.get().load(imageUrl).into(emisorImage);
 
             messageLabel.setText(message.message);
         }else{//cuando tu seas el remitente
