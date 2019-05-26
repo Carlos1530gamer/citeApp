@@ -1,0 +1,136 @@
+% La plantilla usada es la siguiente por si acaso le guste la plantilla profe
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ELEE	3720 Electromechanical Energy Conversion: Report template
+% By Ratheesh Ravindran
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\graphicspath{{Images/}}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{hyperref}
+\usepackage{fancyhdr}
+\usepackage{listings}%para poder mostrar codigo mas facil
+\pagestyle{fancy}
+
+%%DEFINIMOS LOS COLORES PARA JAVA
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+
+%DEFINIMOS EL FORMATO DEL CODIGO DE JAVA
+\lstset{language=Java,
+  showspaces=false,
+  showtabs=false,
+  breaklines=true,
+  showstringspaces=false,
+  breakatwhitespace=true,
+  commentstyle=\color{pgreen},
+  keywordstyle=\color{pblue},
+  stringstyle=\color{pred},
+  basicstyle=\ttfamily,
+  moredelim=[il][\textcolor{pgrey}],
+  moredelim=[is][\textcolor{pgrey}]{\%\%}{\%\%}
+}
+%---------------------------------------------------------
+%----------VARIABELES QUE SERAN UTILIZADAS DESPUES--------
+%---------------------------------------------------------
+
+\newcommand{\documentTitle}{Proyecto Final POO}
+\newcommand{\Creador}{Carlos Daniel Hernandez Chauteco}
+\newcommand{\profesor}{Ing. Guadalupe Lizeth Parrales Romay}
+
+%---------------------------------------------------------
+
+\begin{document}
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.1mm}} 
+\center %esta linea ayuda a centrar todo en la pantalla
+%-----------------------------------------------------------
+%----------------ESTA PARTE ES PARA LOS ENCABEZADOS--------
+%----------------------------------------------------------
+
+\lhead{\documentTitle}
+
+%------------------------------------------------------------
+%----------------ESTA PARTE ES PARA EL HEADER-----------
+%-----------------------------------------------------------
+%unam logos
+\includegraphics{escudounam_negro.jpg} \hfill \includegraphics{fiEscudo.jpg}\\[1cm]
+%end unam logos
+
+\textsc{\Large Programación Orientada a Objetos}\\[0.5cm]
+\textsc{\large Proyecto Final}\\[0.5cm]
+{\large \today}\\[1cm]%FECHA DE COMPILACION
+%---------------------------------------------------------------------------------
+% SECCION PARA EL TITULO
+%---------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries \documentTitle}\\[0.1cm]
+\HRule \\[1.5cm]
+ 
+%---------------------------------------------------------------------------------
+%	SECCION DE AUTORES
+%---------------------------------------------------------------------------------
+%--Aqui estan los nombres de los integrantes
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Alumno}\\
+\textsc{\Creador} 
+\end{flushleft}
+
+
+\begin{flushleft} \large
+
+\emph{Profesora}\\
+\textsc{\profesor} % aqui van los nombres
+\end{flushleft}
+
+\end{minipage}
+
+\vfill
+\hfill
+\newline
+\begin{quote}
+    \hfill
+    \includegraphics{by-nc-sa.png}
+\end{quote}
+
+\vfill % Deja un espacio en blanco para que no haya mas en la pagina
+
+\end{titlepage}
+%\tableofcontents         %Lista de contenido
+\newpage
+
+% AQUI EMPIEZA EL CUERPOD DEL DOCUMENTO
+
+%Aqui van las secciones del documento
+\section{Justificación Del Proyecto}
+\input{Chapters/Justificacion.tex}
+
+\section{Descripción}
+\input{Chapters/Descripcion.tex}
+
+\section{Código Fuente}
+\input{Chapters/CodigoFuente.tex}
+
+\section{Diagramas UML}
+\input{Chapters/Diagramas.tex}
+
+\section{Capturas de Pantalla}
+\input{Chapters/Capturas.tex}
+
+
+%BIBLIOGRAFIA CITADO EN el formato de ACM 
+%Nota: si el equipo lo quiere lo podemos cambiar a appa o cualquier otro que ellos quieran
+
+%\bibliographystyle{acm}
+%\bibliography{bibliografia}
+
+
+
+\end{document}
